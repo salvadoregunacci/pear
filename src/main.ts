@@ -17,7 +17,16 @@ document.querySelector('#start')?.addEventListener("click", () => {
     document.body.style.overflowY = "";
 
     if (preview) {
-        preview.style.opacity ="0";
+        preview.style.opacity = "0";
+        preview.style.pointerEvents = "none";
+    }
+});
+
+document.querySelector('#mute-btn')?.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
     }
 });
 
