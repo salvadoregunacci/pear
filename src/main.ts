@@ -143,9 +143,18 @@ loader.load('/models/scene.gltf', function (gltf) {
                 const tl = gsap.timeline({ duration: 1 });
 
                 tl
-                    .to(".section-3 header", {
-                        opacity: 1,
-                    })
+                    .fromTo(".section-3 header",
+                        {
+                            y: 50,
+                            opacity: 0,
+                        },
+                        {
+                            y: 0,
+                            opacity: 1,
+                            ease: "power2.out",
+                            duration: 1,
+                        }
+                    )
                     .fromTo(".section-3 img",
                         {
                             scale: 0,

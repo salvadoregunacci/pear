@@ -63,7 +63,14 @@ section {
 
 .section-1 {
   position: relative;
-  background: linear-gradient(135deg, #f1f2f6, #ffffff);
+  background: radial-gradient(
+    circle at center,
+    #e8eaed 0%,
+    #d2d4d6 40%,
+    #c0c2c4 70%,
+    #b2b4b6 100%
+  );
+  background-color: #fff;
 
   header {
     height: 80px;
@@ -114,7 +121,7 @@ section {
   .offer3 {
     position: absolute;
     left: 500px;
-    top: 380px;
+    top: 44%;
     max-width: 550px;
     display: flex;
     flex-direction: column;
