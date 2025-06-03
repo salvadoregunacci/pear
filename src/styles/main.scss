@@ -16,12 +16,6 @@ h1 {
   text-transform: uppercase;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-}
-
 .block {
   position: relative;
   width: 100px;
@@ -114,6 +108,7 @@ section {
 }
 
 .section-3 {
+  position: relative;
   background: linear-gradient(135deg, #fefefe, #f4f4f7);
 
   .offer3 {
@@ -129,6 +124,39 @@ section {
 
   p {
     line-height: 1.6;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  header {
+    height: 90px;
+    background: #000;
+    opacity: 0;
+
+    button {
+      background: #fff;
+      color: #000;
+      height: 45px;
+      width: 200px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+      opacity: 0;
+
+      &:hover {
+        background: #c2c2c2;
+      }
+    }
   }
 }
 
@@ -160,7 +188,7 @@ section {
   transition: .3s;
 
   &:hover {
-    background: #e9e9e9;
+    background: #c2c2c2;
   }
 }
 
@@ -187,7 +215,7 @@ section {
   svg {
     width: 32px;
     height: 32px;
-    
+
     path {
       fill: #fff;
     }

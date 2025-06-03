@@ -4,10 +4,11 @@ import { ScrollTrigger, ScrollSmoother } from "gsap/all";
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 const audio = new Audio("/sounds/bg.mp3");
 audio.preload = "auto";
-audio.volume = 0.05;
+audio.volume = 0.03;
 audio.currentTime = 5;
 audio.loop = true;
 
@@ -103,6 +104,8 @@ function animate() {
 
 renderer.setAnimationLoop(animate);
 
+let triggeredOnce = false;
+
 loader.load('/models/scene.gltf', function (gltf) {
     let model = gltf.scene;
     model.position.set(0, 0, 0);
@@ -110,8 +113,11 @@ loader.load('/models/scene.gltf', function (gltf) {
     model.rotateY(THREE.MathUtils.degToRad(-25));
     model.rotateX(THREE.MathUtils.degToRad(15));
 
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
     scene.add(model);
     renderer.render(model, camera);
+
 
     ScrollTrigger.create({
         trigger: "#scroll-section",
@@ -129,6 +135,36 @@ loader.load('/models/scene.gltf', function (gltf) {
 
             if (model.position.y > -0.015) {
                 model.position.x = progress * 0.15;
+            }
+
+            if (progress > 0.9 && !triggeredOnce) {
+                triggeredOnce = true;
+
+                const tl = gsap.timeline({ duration: 1 });
+
+                tl
+                    .to(".section-3 header", {
+                        opacity: 1,
+                    })
+                    .fromTo(".section-3 img",
+                        {
+                            scale: 0,
+                            opacity: 0,
+                        },
+                        {
+                            scale: 1,
+                            opacity: 1,
+                        }
+                    )
+                    .fromTo(".section-3 header button",
+                        {
+                            opacity: 0,
+                        },
+                        {
+                            opacity: 1,
+                        },
+                        "+=0"
+                    )
             }
         }
     });
